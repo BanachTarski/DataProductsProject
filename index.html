@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payments and Charges by DRG and State</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Payments and Charges by DRG and State">
+  <meta name="author" content="Isaac Lawrence">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Payments and Charges by DRG and State</h1>
+    <h2>Developing Data Products</h2>
+    <p>Isaac Lawrence<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Background</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>In 2012 Centers for Medicare &amp; Medicaid Services CMS released <a href="https://data.cms.gov/Medicare/Inpatient-Prospective-Payment-System-IPPS-Provider/97k6-zzx3/about">data it had collected on charges and payments for hospitals across the United States</a>.</li>
+<li>&quot;The data provided here include hospital-specific charges for the more than 3,000 U.S. hospitals that receive Medicare Inpatient Prospective Payment System (IPPS) payments for the top 100 most frequently billed discharges, paid under Medicare based on a rate per discharge using the Medicare Severity Diagnosis Related Group (MS-DRG) for Fiscal Year (FY) 2011. These DRGs represent more than 7 million discharges or 60 percent of total Medicare IPPS discharges.&quot;</li>
+<li>The dataset shows large disparities in charges and payments across the hopsitals that are included.</li>
+<li> For this project, the data has been aggregated by state to spot regional trends.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Variables Examined</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Values represent averages per patient discharged for each DRG.</p>
+
+<ul>
+<li>Average covered charges
+
+<ul>
+<li>The provider&#39;s average charge for services covered by Medicare for all discharges in the DRG.  These will vary from hospital to hospital because of differences in hospital charge structures.</li>
+</ul></li>
+<li>Average total payments
+
+<ul>
+<li>The average of Medicare payments to the provider for the DRG including the DRG amount, teaching,  disproportionate share, capital, and outlier payments for all cases. Also included are co-payment and deductible amounts that the patient is responsible for.</li>
+</ul></li>
+<li>Average Medicare payments
+
+<ul>
+<li>The average of Medicare payments to the provider for the DRG without co-payment and deductible amounts that the patient is responsible for.</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Average total charges for DRG 247 - PERC CARDIOVASC PROC W DRUG-ELUTING STENT W/O MCC are $31,141 in South Dakota, but only $11,232 in Alabama.</li>
+</ul>
+
+<pre><code class="r">subset(aggDatState, aggDatState$Provider.State == &quot;SD&quot; &amp; DRG.Definition == 
+         &quot;247 - PERC CARDIOVASC PROC W DRUG-ELUTING STENT W/O MCC&quot;)[1,4]
+</code></pre>
+
+<pre><code>## [1] 31141
+</code></pre>
+
+<pre><code class="r">subset(aggDatState, aggDatState$Provider.State == &quot;AL&quot; &amp; DRG.Definition == 
+         &quot;247 - PERC CARDIOVASC PROC W DRUG-ELUTING STENT W/O MCC&quot;)[1,4]
+</code></pre>
+
+<pre><code>## [1] 11232
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Screenshot</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img height='560' src='screenshot.png' /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Background'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Variables Examined'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Example'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Screenshot'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
